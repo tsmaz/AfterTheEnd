@@ -1,5 +1,5 @@
-# AfterTheEnd
-Repo for our work-in-progress survival game, After the End
+# After The End
+Repo for our work-in-progress survival game, After the End, being built for CS 4600 - Game Development
 
 
 #### Overview
