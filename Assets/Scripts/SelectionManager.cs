@@ -9,6 +9,7 @@ public class SelectionManager : MonoBehaviour {
 	public bool onTarget;
 	public GameObject interaction_Info_UI;
 	Text interaction_text;
+	public InteractableObject currentTarget;
 	public static SelectionManager Instance { get; set; }
  
 	private void Start()
@@ -34,22 +35,26 @@ public class SelectionManager : MonoBehaviour {
 		if (Physics.Raycast(ray, out hit))
 		{
 			var selectionTransform = hit.transform;
+			var interactableObject = selectionTransform.GetComponent<InteractableObject>();
  
-			if (selectionTransform.GetComponent<InteractableObject>() && selectionTransform.GetComponent<InteractableObject>().playerInRange == true)
+			if (interactableObject && interactableObject.playerInRange == true)
 			{
-				interaction_text.text = selectionTransform.GetComponent<InteractableObject>().GetItemName();
+				interaction_text.text = interactableObject.GetItemName();
 				interaction_Info_UI.SetActive(true);
+				currentTarget = interactableObject;
 				onTarget = true;
 			}
 			else 
 			{ 
 				interaction_Info_UI.SetActive(false);
+				currentTarget = null;
 				onTarget = false;
 			}
  
 		}
 		else {
 			interaction_Info_UI.SetActive(false);
+			currentTarget = null;
 			onTarget = false;
 		}
 		

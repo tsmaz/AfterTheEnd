@@ -27,7 +27,7 @@ public class InteractableObject : MonoBehaviour {
 	}
 
 	public void Update() {
-		if (Input.GetKeyDown(KeyCode.E) && playerInRange && SelectionManager.Instance.onTarget) {
+		if (Input.GetKeyDown(KeyCode.E) && playerInRange && SelectionManager.Instance.currentTarget == this) {
 			// print debug string and destroy gameobject
 			InventorySystem.Instance.AddToInventory(itemName);
 			Destroy(gameObject);
