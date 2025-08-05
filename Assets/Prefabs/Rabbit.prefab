@@ -786,7 +786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInRange: 0
-  ItemName: Rabbit
+  itemName: Rabbit
 --- !u!114 &1973008497590309059
 MonoBehaviour:
   m_ObjectHideFlags: 0

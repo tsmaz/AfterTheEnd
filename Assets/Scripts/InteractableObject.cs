@@ -5,11 +5,11 @@ using UnityEngine;
  
 public class InteractableObject : MonoBehaviour {
 	public bool playerInRange;
-	public string ItemName;
+	public string itemName;
  
 	public string GetItemName()
 	{
-		return ItemName;
+		return itemName;
 	}
 
 	private void OnTriggerEnter(Collider other) {
@@ -29,7 +29,7 @@ public class InteractableObject : MonoBehaviour {
 	public void Update() {
 		if (Input.GetKeyDown(KeyCode.E) && playerInRange && SelectionManager.Instance.onTarget) {
 			// print debug string and destroy gameobject
-			Debug.Log("Game Object destroyed!");
+			InventorySystem.Instance.AddToInventory(itemName);
 			Destroy(gameObject);
 		}
 	}
