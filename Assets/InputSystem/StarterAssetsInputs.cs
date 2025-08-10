@@ -29,7 +29,7 @@ namespace StarterAssets
 
 		public void OnLook(InputValue value)
 		{
-			if (InventorySystem.Instance.isOpen) {
+			if (InventorySystem.Instance.isOpen || CraftingManager.Instance.mainMenuIsOpen || CraftingManager.Instance.subMenuIsOpen) {
 				cursorLocked = false;
 				cursorInputForLook = false;
 				
