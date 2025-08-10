@@ -73,6 +73,7 @@ public class CraftingManager : MonoBehaviour
             if (removingItemsSucceeded) {
                 Debug.Log("Crafting successful: " + recipe.resultingItem);
                 playerInventory.AddToInventory(recipe.resultingItem);
+                PopupSpawner.Instance.SpawnPopup(new Vector3(0, 0, 0), "Crafting successful: " + recipe.resultingItem);
             }
             else {
                 Debug.Log("TryCraftRecipe: Crafting failed: Could not remove required items from inventory.");
