@@ -65,6 +65,53 @@ public class InventorySystem : MonoBehaviour {
 			itemList.Add(itemName);
 		}
 	}
+	
+	public bool RemoveFromInventory(string itemName) {
+		GameObject itemToRemove;
+
+		itemToRemove = TryFindSlotWithItem(itemName);
+		
+		if (itemToRemove != null) {
+			itemList.Remove(itemName);
+			// We unparent the item from the slot so the crafted item can
+			// Immediately take the free slot
+			itemToRemove.transform.SetParent(null);
+			
+			// Note here that we are not destroying the item immediately - it is scheduled
+			// for destruction at the end of the frame.
+			Destroy(itemToRemove);
+			return true;
+		}
+		else {Debug.Log("RemoveFromInventory: Removing item failed: item not found in inventory");}
+
+		return false;
+	}
+
+	private GameObject TryFindSlotWithItem(string itemName) {
+		foreach (GameObject slot in slotList) {
+
+			if (slot.transform.childCount > 0) {
+
+				Transform item = slot.transform.GetChild(0);
+				
+				if (item.name == itemName || item.name == itemName + "(Clone)") {
+					return item.gameObject;
+				}
+			}
+		}
+    
+		// Item not found
+		return null;
+	}
+	
+	public bool HasRequiredItems(ScriptableObjects.RecipeBase recipe) {
+		foreach (var item in recipe.requiredItems) {
+			if (itemList.Contains(item)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	public void DropItem(GameObject item) {
 		
