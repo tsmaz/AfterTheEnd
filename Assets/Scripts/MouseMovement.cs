@@ -6,6 +6,7 @@ public class MouseMovement : MonoBehaviour
 {
  
 	public float mouseSensitivity = 100f;
+	public static bool enableMouseLook = true;
  
 	float xRotation = 0f;
 	float YRotation = 0f;
@@ -18,6 +19,8 @@ public class MouseMovement : MonoBehaviour
  
 	void Update()
 	{
+		if (!enableMouseLook) return;
+		
 		float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
 		float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
  
