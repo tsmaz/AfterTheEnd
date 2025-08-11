@@ -60,7 +60,7 @@ public class CraftingManager : MonoBehaviour
         bool removingItemsSucceeded = false;
 
         if (playerInventory.isFull) {
-            Debug.Log("Cannot craft, inventory is full.");
+            PopupSpawner.Instance.SpawnPopup(new Vector3(0, 0, 0), "Craft failed: inventory is full.");
             return;
         }
         
@@ -71,12 +71,15 @@ public class CraftingManager : MonoBehaviour
             }
 
             if (removingItemsSucceeded) {
-                Debug.Log("Crafting successful: " + recipe.resultingItem);
                 playerInventory.AddToInventory(recipe.resultingItem);
+                PopupSpawner.Instance.SpawnPopup(new Vector3(0, 0, 0), "Crafting successful: " + recipe.resultingItem);
             }
             else {
                 Debug.Log("TryCraftRecipe: Crafting failed: Could not remove required items from inventory.");
             }
+        }
+        else {
+            PopupSpawner.Instance.SpawnPopup(new Vector3(0, 0, 0), "Craft failed: Missing required items.");
         }
     }
     
