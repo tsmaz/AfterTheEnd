@@ -60,7 +60,7 @@ public class InventorySystem : MonoBehaviour {
 		}
 		else {
 			slotToEquip = findNextEmptySlot();
-			itemToAdd = (GameObject)Instantiate(Resources.Load<GameObject>(itemName), 
+			itemToAdd = (GameObject)Instantiate(Resources.Load<GameObject>("InventoryItems/" + itemName), 
 				slotToEquip.transform.position, slotToEquip.transform.rotation, slotToEquip.transform);
 			itemList.Add(itemName);
 		}

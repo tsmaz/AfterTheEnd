@@ -58,7 +58,7 @@ public class CraftingManager : MonoBehaviour
     public void TryCraftRecipe(string recipeName) {
         
         InventorySystem playerInventory = FindObjectOfType<InventorySystem>();
-        RecipeBase recipe = Resources.Load<RecipeBase>("Recipes/" + recipeName);
+        RecipeBase recipe = Resources.Load<RecipeBase>("CraftingRecipes/" + recipeName);
         bool removingItemsSucceeded = false;
 
         if (playerInventory.isFull) {
