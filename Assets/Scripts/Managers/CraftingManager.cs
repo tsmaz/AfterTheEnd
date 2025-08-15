@@ -10,6 +10,7 @@ public class CraftingManager : MonoBehaviour
     
     public GameObject craftingScreenUI;
     public GameObject craftingToolsSubmenuUI;
+    public GameObject craftingStructuresSubmenuUI;
     [FormerlySerializedAs("isOpen")] public bool mainMenuIsOpen;
     public bool subMenuIsOpen;
     // Start is called before the first frame update
@@ -30,6 +31,7 @@ public class CraftingManager : MonoBehaviour
     {
         craftingScreenUI.SetActive(false);
         craftingToolsSubmenuUI.SetActive(false);
+        craftingStructuresSubmenuUI.SetActive(false);
         mainMenuIsOpen = false;
         subMenuIsOpen = false;
     }
@@ -85,6 +87,13 @@ public class CraftingManager : MonoBehaviour
     
     public void OpenCraftingToolsSubmenu() {
         craftingToolsSubmenuUI.SetActive(true);
+        mainMenuIsOpen = false;
+        subMenuIsOpen = true;
+    }
+
+    public void OpenCraftingStructuresSubmenu()
+    {
+        craftingStructuresSubmenuUI.SetActive(true);
         mainMenuIsOpen = false;
         subMenuIsOpen = true;
     }
