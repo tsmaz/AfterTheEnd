@@ -6,6 +6,8 @@ using UnityEngine;
 public class InteractableObject : MonoBehaviour {
 	public bool playerInRange;
 	public string itemName;
+	public bool canBePickedUp = true;
+	public bool canBeDeconstructed = false;
  
 	public string GetItemName()
 	{
@@ -29,8 +31,12 @@ public class InteractableObject : MonoBehaviour {
 	public void Update() {
 		if (Input.GetKeyDown(KeyCode.E) && playerInRange && SelectionManager.Instance.currentTarget == this) {
 			// print debug string and destroy gameobject
-			InventorySystem.Instance.AddToInventory(itemName);
-			Destroy(gameObject);
+
+			if ( canBePickedUp )
+			{
+				InventorySystem.Instance.AddToInventory(itemName, 1);
+				Destroy(gameObject);
+			}
 		}
 	}
 }

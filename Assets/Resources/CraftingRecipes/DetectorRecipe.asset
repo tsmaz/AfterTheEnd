@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a93566880c24de3b6d8ff133647c562, type: 3}
-  m_Name: CampfireRecipe
+  m_Name: DetectorRecipe
   m_EditorClassIdentifier: 
-  requiredItems: []
-  requiredQuantities: 
-  resultingItem: 
-  resultingItemQuantity: 0
+  requiredItems:
+  - Electronics
+  - Scrap Metal
+  requiredQuantities: 0100000001000000
+  resultingItem: Detector
+  resultingItemQuantity: 1

@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   requiredItems:
   - Wood
-  - Nails
+  requiredQuantities: 04000000
   resultingItem: Foundation
+  resultingItemQuantity: 1

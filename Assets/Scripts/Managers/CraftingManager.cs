@@ -57,10 +57,17 @@ public class CraftingManager : MonoBehaviour
 
     public void TryCraftRecipe(string recipeName) {
         
+        Debug.Log( "Trying to craft recipe: " + recipeName );
+        
         InventorySystem playerInventory = FindObjectOfType<InventorySystem>();
         RecipeBase recipe = Resources.Load<RecipeBase>("CraftingRecipes/" + recipeName);
-        bool removingItemsSucceeded = false;
-
+        if (recipe == null) {
+            Debug.LogError("Recipe not found: " + recipeName);
+            PopupSpawner.Instance.SpawnPopup(new Vector3(0, 0, 0), "Craft failed: Recipe not found.");
+            return;
+        }
+        
+        
         if (playerInventory.isFull) {
             PopupSpawner.Instance.SpawnPopup(new Vector3(0, 0, 0), "Craft failed: inventory is full.");
             return;
@@ -68,17 +75,21 @@ public class CraftingManager : MonoBehaviour
         
         if (playerInventory.HasRequiredItems(recipe) == true)
         {
-            foreach (var item in recipe.requiredItems) {
-                removingItemsSucceeded = playerInventory.RemoveFromInventory(item);
+            // Lopp through required items and quantities
+            for (int i = 0; i < recipe.requiredItems.Count; i++)
+            {
+                if ( InventorySystem.Instance.RemoveFromInventory( recipe.requiredItems[ i ], recipe.requiredQuantities[ i ] ) )
+                {
+                    Debug.Log(recipe.requiredItems[ i ] + " is removed from inventory. Count: " + recipe.requiredQuantities[ i ]);
+                }
+                else
+                {
+                    Debug.Log( "Failed to remove item: " + recipe.requiredItems[ i ] + " in quanity: " + recipe.requiredQuantities[ i ] );
+                }
             }
-
-            if (removingItemsSucceeded) {
-                playerInventory.AddToInventory(recipe.resultingItem);
+            
+                playerInventory.AddToInventory(recipe.resultingItem, recipe.resultingItemQuantity);
                 PopupSpawner.Instance.SpawnPopup(new Vector3(0, 0, 0), "Crafting successful: " + recipe.resultingItem);
-            }
-            else {
-                Debug.Log("TryCraftRecipe: Crafting failed: Could not remove required items from inventory.");
-            }
         }
         else {
             PopupSpawner.Instance.SpawnPopup(new Vector3(0, 0, 0), "Craft failed: Missing required items.");

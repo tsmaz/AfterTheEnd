@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
- 
- 
- 
+using UnityEngine.UI;
+
+
 public class ItemSlot : MonoBehaviour, IDropHandler
 {
- 
 	public GameObject Item
 	{
 		get
@@ -20,12 +19,7 @@ public class ItemSlot : MonoBehaviour, IDropHandler
 			return null;
 		}
 	}
- 
- 
- 
- 
- 
- 
+	
 	public void OnDrop(PointerEventData eventData)
 	{
 		Debug.Log("OnDrop");
