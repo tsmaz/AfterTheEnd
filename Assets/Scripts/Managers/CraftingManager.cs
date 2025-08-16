@@ -43,6 +43,7 @@ public class CraftingManager : MonoBehaviour
             Debug.Log("c is pressed");
             craftingScreenUI.SetActive(true);
             craftingToolsSubmenuUI.SetActive(false);
+            craftingStructuresSubmenuUI.SetActive(false);
             mainMenuIsOpen = true;
             subMenuIsOpen = false;
         }
@@ -50,6 +51,7 @@ public class CraftingManager : MonoBehaviour
             craftingScreenUI.SetActive(false);
             mainMenuIsOpen = false;
             craftingToolsSubmenuUI.SetActive(false);
+            craftingStructuresSubmenuUI.SetActive(false);
             subMenuIsOpen = false;
         }
         
@@ -98,6 +100,7 @@ public class CraftingManager : MonoBehaviour
     
     public void OpenCraftingToolsSubmenu() {
         craftingToolsSubmenuUI.SetActive(true);
+        craftingScreenUI.SetActive(false);
         mainMenuIsOpen = false;
         subMenuIsOpen = true;
     }
@@ -105,6 +108,7 @@ public class CraftingManager : MonoBehaviour
     public void OpenCraftingStructuresSubmenu()
     {
         craftingStructuresSubmenuUI.SetActive(true);
+        craftingScreenUI.SetActive(false);
         mainMenuIsOpen = false;
         subMenuIsOpen = true;
     }

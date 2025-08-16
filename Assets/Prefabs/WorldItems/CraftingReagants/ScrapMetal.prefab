@@ -178,3 +178,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInRange: 0
   itemName: Scrap Metal
+  canBePickedUp: 1
+  canBeDeconstructed: 0

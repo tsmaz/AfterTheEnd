@@ -178,3 +178,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInRange: 0
   itemName: Wood
+  canBePickedUp: 1
+  canBeDeconstructed: 0

@@ -178,3 +178,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInRange: 0
   itemName: Axe
+  canBePickedUp: 1
+  canBeDeconstructed: 0
