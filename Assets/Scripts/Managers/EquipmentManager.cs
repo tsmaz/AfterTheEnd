@@ -41,10 +41,10 @@ public class EquipmentManager : MonoBehaviour
 		// Check if the player has the required item in their inventory
 		bool hasRequiredItem = true; // TODO: Replace with actual inventory check
 
-		if ( hasRequiredItem && equippedItem == null )
+		if (equippedItem is null )
 		{
 			// Instantiate the equipped item at the visualslot's position and rotation
-			if ( itemToEquip != null && equipVisualSlot != null )
+			if ( itemToEquip is not null && equipVisualSlot != null )
 			{
 				equippedItem = Instantiate( itemToEquip, equipVisualSlot.transform );
 			}
@@ -53,6 +53,11 @@ public class EquipmentManager : MonoBehaviour
 				Debug.LogWarning( "Missing EquippedItemPrefab or EquipVisualSlot reference!" );
 			}
 		}
+		else if (equippedItem is not null)
+		{
+			Debug.Log("An item is already equipped");
+			PopupSpawner.Instance.SpawnPopup( Vector3.zero, "Already equipping an item. Press R to Unequip" );
+		}
 	}
 
 	public void UnequipItem()
@@ -60,6 +65,10 @@ public class EquipmentManager : MonoBehaviour
 		if ( equippedItem != null )
 		{
 			Destroy( equippedItem );
+			equippedItem = null;
+			Debug.Log( "Item unequipped" );
 		}
 	}
+	
+	
 }

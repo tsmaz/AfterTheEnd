@@ -7,7 +7,6 @@ using TMPro;
 public class HungerBar : MonoBehaviour
 {
 	private Slider slider;
-	public TextMeshProUGUI hungerCounter;
 
 	public GameObject playerStatus;
 
@@ -25,7 +24,5 @@ public class HungerBar : MonoBehaviour
 
 		float fillValue = currentHunger / maxHunger;
 		slider.value = fillValue;
-
-		hungerCounter.text = currentHunger + "/" + maxHunger;
 	}
 }

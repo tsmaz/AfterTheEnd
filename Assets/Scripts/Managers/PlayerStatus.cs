@@ -41,10 +41,6 @@ public class PlayerStatus : MonoBehaviour
 
 	private void Start()
 	{
-		currentHealth = maxHealth;
-		currentHunger = maxHunger;
-		currentHydrationLevel = maxHydrationLevel;
-
 		lastPosition = player.transform.position;
 
 		StartCoroutine( decreaseHydration() );
@@ -54,9 +50,9 @@ public class PlayerStatus : MonoBehaviour
 	{
 		while ( true )
 		{
-			currentHydrationLevel -= 10;
+			currentHydrationLevel -= 1;
 			currentHydrationLevel = Mathf.Max( currentHydrationLevel, 0 );
-			yield return new WaitForSeconds( 2 );
+			yield return new WaitForSeconds( 10 );
 		}
 	}
 
@@ -87,7 +83,7 @@ public class PlayerStatus : MonoBehaviour
 		distanceTraveled += Vector3.Distance( player.transform.position, lastPosition );
 		lastPosition = player.transform.position;
 
-		if ( distanceTraveled >= 5 )
+		if ( distanceTraveled >= 20 )
 		{
 			distanceTraveled = 0;
 			currentHunger -= 1;
@@ -99,13 +95,7 @@ public class PlayerStatus : MonoBehaviour
 		{
 			damageCoroutine = StartCoroutine( DamageOverTime() );
 		}
-
-		// Manual health test key
-		if ( Input.GetKeyDown( KeyCode.N ) )
-		{
-			currentHealth -= 10;
-			currentHealth = Mathf.Max( currentHealth, 0 );
-		}
+		
 	}
 	
 	private void HealPlayer( float amount )
@@ -128,12 +118,13 @@ public class PlayerStatus : MonoBehaviour
 
 	public void ConsumeItem( Consumable item )
 	{
+		
+		Debug.Log( "PlayerStatus: Attempting to Consume Item" );
 		if ( item == null )
 		{
 			Debug.LogWarning( "Item is null, cannot consume." );
 			return;
 		}
-
 		if ( item.hungerRestored != 0 )
 		{
 			FeedPlayer( item.hungerRestored );
@@ -149,6 +140,7 @@ public class PlayerStatus : MonoBehaviour
 			HealPlayer( item.healthRestored );
 		}
 		
+		Debug.Log("Item consumed. Destroying."  );
 		Destroy(item.gameObject);
 	}
 }

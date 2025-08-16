@@ -7,7 +7,6 @@ using TMPro;
 public class HydrationBar : MonoBehaviour
 {
 	private Slider slider;
-	public TextMeshProUGUI hydrationCounter;
 
 	public GameObject playerStatus;
 
@@ -25,7 +24,5 @@ public class HydrationBar : MonoBehaviour
 
 		float fillValue = currentHydration / maxHydration;
 		slider.value = fillValue;
-
-		hydrationCounter.text = currentHydration + "/" + maxHydration;
 	}
 }

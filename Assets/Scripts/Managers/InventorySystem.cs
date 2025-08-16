@@ -10,6 +10,7 @@ public class InventorySystem : MonoBehaviour
 {
 	public static InventorySystem Instance { get; set; }
 
+	public GameObject HotbarGrid;
 	public GameObject inventoryScreenUI;
 	public bool isOpen;
 	public List<GameObject> slotList = new List<GameObject>();
@@ -31,7 +32,6 @@ public class InventorySystem : MonoBehaviour
 			Instance = this;
 		}
 	}
-	
 	
 	void Start()
 	{
@@ -55,7 +55,36 @@ public class InventorySystem : MonoBehaviour
 			inventoryScreenUI.SetActive( false );
 			isOpen = false;
 		}
+		else if ( Input.GetKeyDown( KeyCode.Alpha1 ) )
+		{
+			SelectHotbarSlot( 1 );
+		}
+		else if ( Input.GetKeyDown( KeyCode.Alpha2 ) )
+		{
+			SelectHotbarSlot( 2 );
+		}
+		else if ( Input.GetKeyDown( KeyCode.Alpha3 ) )
+		{
+			SelectHotbarSlot( 3 );
+		}
+		else if ( Input.GetKeyDown( KeyCode.Alpha4 ) )
+		{
+			SelectHotbarSlot( 4 );
+		}
+		else if ( Input.GetKeyDown( KeyCode.Alpha5 ) )
+		{
+			SelectHotbarSlot( 5 );
+		}
+		else if ( Input.GetKeyDown( KeyCode.Alpha6 ) )
+		{
+			SelectHotbarSlot( 6 );
+		}
+		else if ( Input.GetKeyDown( KeyCode.Alpha7 ) )
+		{
+			SelectHotbarSlot( 7 );
+		}
 	}
+
 
 	private void PopulateSlotList()
 	{
@@ -229,6 +258,36 @@ public class InventorySystem : MonoBehaviour
 		else
 		{
 			return false;
+		}
+	}
+
+	public void SelectHotbarSlot( int slotIndex )
+	{
+		var selectedSlot = HotbarGrid.transform.GetChild( slotIndex - 1 ).gameObject;
+		GameObject itemInSlot = null;
+		
+		if ( selectedSlot.transform.childCount > 0 )
+		{ 
+			itemInSlot = selectedSlot.transform.GetChild( 0 ).gameObject;
+			Debug.Log( "Selected item: " + itemInSlot.name );
+		}
+		else if ( selectedSlot.transform.childCount == 0 )
+		{
+			Debug.Log( "No item in selected hotbar slot" );
+			return;
+		}
+		
+		if ( itemInSlot is not null )
+		{
+			GameObject equipPrefab = itemInSlot.GetComponent<Equippable>()?.EquippedItemPrefab;
+			if ( equipPrefab is not null )
+			{
+				EquipmentManager.Instance.EquipItem( equipPrefab );
+			}
+		}
+		else
+		{
+			Debug.Log( "Failed to equip item" );
 		}
 	}
 }

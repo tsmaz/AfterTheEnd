@@ -7,7 +7,6 @@ using TMPro;
 public class HealthBar : MonoBehaviour
 {
 	private Slider slider;
-	public TextMeshProUGUI healthCounter;
 
 	public GameObject playerStatus;
 
@@ -25,7 +24,5 @@ public class HealthBar : MonoBehaviour
 
 		float fillValue = currentHealth / maxHealth;
 		slider.value = fillValue;
-
-		healthCounter.text = currentHealth + "/" + maxHealth;
 	}
 }
