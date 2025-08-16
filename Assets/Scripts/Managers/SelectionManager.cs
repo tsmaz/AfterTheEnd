@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class SelectionManager : MonoBehaviour
@@ -39,7 +36,7 @@ public class SelectionManager : MonoBehaviour
 			var selectionTransform = hit.transform;
 			var interactableObject = selectionTransform.GetComponent<InteractableObject>();
 
-			if ( interactableObject && interactableObject.playerInRange == true )
+			if ( interactableObject && interactableObject.playerInRange)
 			{
 				interaction_text.text = interactableObject.GetItemName();
 				interaction_Info_UI.SetActive( true );
