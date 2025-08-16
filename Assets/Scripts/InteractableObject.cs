@@ -50,7 +50,7 @@ public class InteractableObject : MonoBehaviour
 			{
 				return;
 			}
-			
+
 			if ( gameObject.CompareTag( "Tree" ) && EquipmentManager.Instance.equippedItem.CompareTag( "Axe" ) )
 			{
 				InventorySystem.Instance.AddToInventory( "Wood", 2 );
@@ -58,8 +58,5 @@ public class InteractableObject : MonoBehaviour
 				Destroy( gameObject );
 			}
 		}
-
 	}
-
-
 }

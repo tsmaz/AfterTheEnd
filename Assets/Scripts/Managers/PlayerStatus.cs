@@ -107,4 +107,48 @@ public class PlayerStatus : MonoBehaviour
 			currentHealth = Mathf.Max( currentHealth, 0 );
 		}
 	}
+	
+	private void HealPlayer( float amount )
+	{
+		currentHealth += amount;
+		currentHealth = Mathf.Min( currentHealth, maxHealth );
+	}
+	
+	private void FeedPlayer( float amount )
+	{
+		currentHunger += amount;
+		currentHunger = Mathf.Min( currentHunger, maxHunger );
+	}
+	
+	private void HydratePlayer( float amount )
+	{
+		currentHydrationLevel += amount;
+		currentHydrationLevel = Mathf.Min( currentHydrationLevel, maxHydrationLevel );
+	}
+
+	public void ConsumeItem( Consumable item )
+	{
+		if ( item == null )
+		{
+			Debug.LogWarning( "Item is null, cannot consume." );
+			return;
+		}
+
+		if ( item.hungerRestored != 0 )
+		{
+			FeedPlayer( item.hungerRestored );
+		}
+		
+		if ( item.thirstRestored != 0 )
+		{
+			HydratePlayer( item.thirstRestored );
+		}
+		
+		if ( item.healthRestored != 0 )
+		{
+			HealPlayer( item.healthRestored );
+		}
+		
+		Destroy(item.gameObject);
+	}
 }

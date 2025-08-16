@@ -8,7 +8,7 @@ public class EquipmentManager : MonoBehaviour
 
 	public GameObject equipVisualSlot;
 	public GameObject equippedItem;
-	
+
 	private void Awake()
 	{
 		if ( Instance != null && Instance != this )

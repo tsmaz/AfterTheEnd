@@ -31,8 +31,8 @@ public class InventorySystem : MonoBehaviour
 			Instance = this;
 		}
 	}
-
-
+	
+	
 	void Start()
 	{
 		isOpen = false;
