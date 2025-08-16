@@ -8,6 +8,8 @@ TagManager:
   - Interactable
   - Pickup
   - Slot
+  - Tree
+  - Axe
   layers:
   - Default
   - TransparentFX

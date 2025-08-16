@@ -2,30 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro; 
+using TMPro;
 
 public class HealthBar : MonoBehaviour
 {
-    private Slider slider;
-    public TextMeshProUGUI healthCounter; 
+	private Slider slider;
+	public TextMeshProUGUI healthCounter;
 
-    public GameObject playerStatus;
+	public GameObject playerStatus;
 
-    private float currentHealth, maxHealth;
+	private float currentHealth, maxHealth;
 
-    void Awake()
-    {
-        slider = GetComponent<Slider>();
-    }
+	void Awake()
+	{
+		slider = GetComponent<Slider>();
+	}
 
-    void Update()
-    {
-        currentHealth = playerStatus.GetComponent<PlayerStatus>().currentHealth;
-        maxHealth = playerStatus.GetComponent<PlayerStatus>().maxHealth;
+	void Update()
+	{
+		currentHealth = playerStatus.GetComponent<PlayerStatus>().currentHealth;
+		maxHealth = playerStatus.GetComponent<PlayerStatus>().maxHealth;
 
-        float fillValue = currentHealth / maxHealth;
-        slider.value = fillValue;
+		float fillValue = currentHealth / maxHealth;
+		slider.value = fillValue;
 
-        healthCounter.text = currentHealth + "/" + maxHealth;
-    }
+		healthCounter.text = currentHealth + "/" + maxHealth;
+	}
 }

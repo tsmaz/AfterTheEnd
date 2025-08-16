@@ -17,7 +17,7 @@ public class InventorySystem : MonoBehaviour
 	private GameObject itemToAdd;
 	private GameObject slotToEquip;
 	public bool isFull;
-	
+
 	public UnityEvent<int> OnItemQuantityChanged;
 
 	private void Awake()
@@ -93,15 +93,17 @@ public class InventorySystem : MonoBehaviour
 		{
 			// If item does not exist, create a new item and add it to the inventory
 			slotToEquip = findNextEmptySlot();
-			if (slotToEquip != null)
+			if ( slotToEquip != null )
 			{
-				itemToAdd = (GameObject)Instantiate(Resources.Load<GameObject>("InventoryItems/" + itemName),
-					slotToEquip.transform.position, slotToEquip.transform.rotation, slotToEquip.transform);
-				itemList.Add( new ItemData( itemName, 1 ) );
+				itemToAdd = ( GameObject )Instantiate( Resources.Load<GameObject>( "InventoryItems/" + itemName ),
+					slotToEquip.transform.position, slotToEquip.transform.rotation, slotToEquip.transform );
+				itemList.Add( new ItemData( itemName, quantity ) );
+				Text quantityText = itemToAdd.GetComponentInChildren<Text>();
+				quantityText.text = quantity.ToString();
 			}
 			else
-			{//sosdk
-				Debug.Log("Failed to find an empty slot");
+			{
+				Debug.Log( "Failed to find an empty slot" );
 			}
 		}
 	}
@@ -124,7 +126,7 @@ public class InventorySystem : MonoBehaviour
 					itemData.Quantity -= quantity;
 					Text quantityText = existingItem.GetComponentInChildren<Text>();
 					quantityText.text = itemData.Quantity.ToString();
-					
+
 					if ( itemData.Quantity <= 0 )
 					{
 						itemList.Remove( itemData );
@@ -174,11 +176,11 @@ public class InventorySystem : MonoBehaviour
 		{
 			Debug.Log( "recipe is null" );
 		}
-		
+
 		for ( int i = 0; i < recipe.requiredItems.Count; i++ )
 		{
-			string requiredItem = recipe.requiredItems[i];
-			int requiredQuantity = recipe.requiredQuantities[i];
+			string requiredItem = recipe.requiredItems[ i ];
+			int requiredQuantity = recipe.requiredQuantities[ i ];
 
 			GameObject existingItem = TryFindSlotWithItem( requiredItem );
 
@@ -229,6 +231,4 @@ public class InventorySystem : MonoBehaviour
 			return false;
 		}
 	}
-	
 }
-	

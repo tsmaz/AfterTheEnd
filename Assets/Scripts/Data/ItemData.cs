@@ -9,5 +9,3 @@ public class ItemData
 		this.Quantity = quantity;
 	}
 }
-
-

@@ -8,86 +8,84 @@ namespace StarterAssets
 {
 	public class StarterAssetsInputs : MonoBehaviour
 	{
-		[Header("Character Input Values")]
-		public Vector2 move;
+		[ Header( "Character Input Values" ) ] public Vector2 move;
 		public Vector2 look;
 		public bool jump;
 		public bool sprint;
 
-		[Header("Movement Settings")]
-		public bool analogMovement;
+		[ Header( "Movement Settings" ) ] public bool analogMovement;
 
-		[Header("Mouse Cursor Settings")]
-		public bool cursorLocked = true;
+		[ Header( "Mouse Cursor Settings" ) ] public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
 
 #if ENABLE_INPUT_SYSTEM
-		public void OnMove(InputValue value)
+		public void OnMove( InputValue value )
 		{
-			MoveInput(value.Get<Vector2>());
+			MoveInput( value.Get<Vector2>() );
 		}
 
-		public void OnLook(InputValue value)
+		public void OnLook( InputValue value )
 		{
-			if (InventorySystem.Instance.isOpen || CraftingManager.Instance.mainMenuIsOpen || CraftingManager.Instance.subMenuIsOpen) {
+			if ( InventorySystem.Instance.isOpen || CraftingManager.Instance.mainMenuIsOpen || CraftingManager.Instance.subMenuIsOpen )
+			{
 				cursorLocked = false;
 				cursorInputForLook = false;
-				
-				SetCursorState(cursorLocked);
+
+				SetCursorState( cursorLocked );
 			}
-			else {
+			else
+			{
 				cursorLocked = true;
 				cursorInputForLook = true;
-				SetCursorState(cursorLocked);
+				SetCursorState( cursorLocked );
 			}
-			
-			if(cursorInputForLook)
+
+			if ( cursorInputForLook )
 			{
-				LookInput(value.Get<Vector2>());
+				LookInput( value.Get<Vector2>() );
 			}
 		}
 
-		public void OnJump(InputValue value)
+		public void OnJump( InputValue value )
 		{
-			JumpInput(value.isPressed);
+			JumpInput( value.isPressed );
 		}
 
-		public void OnSprint(InputValue value)
+		public void OnSprint( InputValue value )
 		{
-			SprintInput(value.isPressed);
+			SprintInput( value.isPressed );
 		}
 #endif
 
 
-		public void MoveInput(Vector2 newMoveDirection)
+		public void MoveInput( Vector2 newMoveDirection )
 		{
 			move = newMoveDirection;
-		} 
+		}
 
-		public void LookInput(Vector2 newLookDirection)
+		public void LookInput( Vector2 newLookDirection )
 		{
 			look = newLookDirection;
 		}
 
-		public void JumpInput(bool newJumpState)
+		public void JumpInput( bool newJumpState )
 		{
 			jump = newJumpState;
 		}
 
-		public void SprintInput(bool newSprintState)
+		public void SprintInput( bool newSprintState )
 		{
 			sprint = newSprintState;
 		}
-		
-		private void OnApplicationFocus(bool hasFocus)
+
+		private void OnApplicationFocus( bool hasFocus )
 		{
-			SetCursorState(cursorLocked);
+			SetCursorState( cursorLocked );
 		}
 
-		private void SetCursorState(bool newState)
+		private void SetCursorState( bool newState )
 		{
 			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
 		}
 	}
-	
 }

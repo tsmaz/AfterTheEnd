@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 7660949890127742454}
   m_Layer: 0
   m_Name: Tree
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -229,6 +229,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInRange: 0
   itemName: Tree
+  canBePickedUp: 0
+  canBeDeconstructed: 0
 --- !u!135 &7660949890127742454
 SphereCollider:
   m_ObjectHideFlags: 0

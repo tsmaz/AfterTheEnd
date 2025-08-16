@@ -11,32 +11,24 @@ public class ItemSlot : MonoBehaviour, IDropHandler
 	{
 		get
 		{
-			if (transform.childCount > 0 )
+			if ( transform.childCount > 0 )
 			{
-				return transform.GetChild(0).gameObject;
+				return transform.GetChild( 0 ).gameObject;
 			}
- 
+
 			return null;
 		}
 	}
-	
-	public void OnDrop(PointerEventData eventData)
+
+	public void OnDrop( PointerEventData eventData )
 	{
-		Debug.Log("OnDrop");
- 
+		Debug.Log( "OnDrop" );
+
 		//if there is not item already then set our item.
-		if (!Item)
+		if ( !Item )
 		{
- 
-			DragDrop.itemBeingDragged.transform.SetParent(transform);
-			DragDrop.itemBeingDragged.transform.localPosition = new Vector2(0, 0);
- 
+			DragDrop.itemBeingDragged.transform.SetParent( transform );
+			DragDrop.itemBeingDragged.transform.localPosition = new Vector2( 0, 0 );
 		}
- 
- 
 	}
- 
- 
- 
- 
 }

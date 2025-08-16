@@ -3,28 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+
 public class HungerBar : MonoBehaviour
 {
-    private Slider slider;
-    public TextMeshProUGUI hungerCounter;
+	private Slider slider;
+	public TextMeshProUGUI hungerCounter;
 
-    public GameObject playerStatus;
+	public GameObject playerStatus;
 
-    private float currentHunger, maxHunger;
+	private float currentHunger, maxHunger;
 
-    void Awake()
-    {
-        slider = GetComponent<Slider>();
-    }
+	void Awake()
+	{
+		slider = GetComponent<Slider>();
+	}
 
-    void Update()
-    {
-        currentHunger = playerStatus.GetComponent<PlayerStatus>().currentHunger;
-        maxHunger = playerStatus.GetComponent<PlayerStatus>().maxHunger;
+	void Update()
+	{
+		currentHunger = playerStatus.GetComponent<PlayerStatus>().currentHunger;
+		maxHunger = playerStatus.GetComponent<PlayerStatus>().maxHunger;
 
-        float fillValue = currentHunger / maxHunger;
-        slider.value = fillValue;
+		float fillValue = currentHunger / maxHunger;
+		slider.value = fillValue;
 
-        hungerCounter.text = currentHunger + "/" + maxHunger;
-    }
+		hungerCounter.text = currentHunger + "/" + maxHunger;
+	}
 }
